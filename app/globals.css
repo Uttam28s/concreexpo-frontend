@@ -1,0 +1,222 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Concreexpo Design System - Custom CSS Variables */
+    --color-background-primary: #0f172a;
+    --color-background-secondary: #1e293b;
+    --color-background-tertiary: #334155;
+    --color-accent-primary: #3b82f6;
+    --color-accent-secondary: #8b5cf6;
+    --color-accent-hover: #2563eb;
+    --color-text-primary: #f1f5f9;
+    --color-text-secondary: #94a3b8;
+    --color-text-tertiary: #64748b;
+    --color-success: #10b981;
+    --color-error: #ef4444;
+    --color-warning: #f59e0b;
+    --color-info: #3b82f6;
+
+    /* Base Variables */
+    --color-background: var(--color-background-primary);
+    --color-foreground: var(--color-text-primary);
+    --color-card: var(--color-background-secondary);
+    --color-card-foreground: var(--color-text-primary);
+    --color-popover: var(--color-background-secondary);
+    --color-popover-foreground: var(--color-text-primary);
+    --color-primary: var(--color-accent-primary);
+    --color-primary-foreground: #ffffff;
+    --color-secondary: var(--color-background-tertiary);
+    --color-secondary-foreground: var(--color-text-primary);
+    --color-muted: var(--color-background-tertiary);
+    --color-muted-foreground: var(--color-text-secondary);
+    --color-accent: var(--color-accent-secondary);
+    --color-accent-foreground: #ffffff;
+    --color-destructive: var(--color-error);
+    --color-destructive-foreground: #ffffff;
+    --color-border: var(--color-background-tertiary);
+    --color-input: var(--color-background-tertiary);
+    --color-ring: var(--color-accent-primary);
+
+    /* Font Families */
+    --font-sans: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'Fira Code', Consolas, Monaco, 'Courier New', monospace;
+
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+
+    /* shadcn/ui HSL colors */
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215.4 16.3% 46.9%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 262.1 83.3% 57.8%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 217.2 91.2% 59.8%;
+    --radius: 0.5rem;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 47.4% 11.2%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215.4 16.3% 46.9%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 262.1 83.3% 57.8%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 217.2 91.2% 59.8%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    overflow-x: hidden;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-background-tertiary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-tertiary);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent-primary);
+  color: white;
+}
+
+/* Focus Visible */
+:focus-visible {
+  outline: 2px solid var(--color-accent-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@layer utilities {
+  /* Custom Utility Classes */
+  .animate-shimmer {
+    animation: shimmer 2s infinite linear;
+    background: linear-gradient(
+      90deg,
+      var(--color-background-secondary) 0%,
+      var(--color-background-tertiary) 50%,
+      var(--color-background-secondary) 100%
+    );
+    background-size: 1000px 100%;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+  }
+
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--color-accent-primary) 0%, var(--color-accent-hover) 100%);
+  }
+
+  .gradient-success {
+    background: linear-gradient(135deg, var(--color-success) 0%, #059669 100%);
+  }
+
+  .gradient-error {
+    background: linear-gradient(135deg, var(--color-error) 0%, #dc2626 100%);
+  }
+
+  .glass-effect {
+    background: rgba(30, 41, 59, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  /* Card Hover Effect */
+  .card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Glow Effects */
+  .glow-primary {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+
+  .glow-error {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+  }
+}
