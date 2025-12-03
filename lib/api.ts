@@ -112,6 +112,7 @@ export const appointmentApi = {
   verifyOtpWithWidget: (id: string, accessToken: string) => api.post(`/appointments/${id}/verify-otp-widget`, { accessToken }),
   submitFeedback: (id: string, feedback: string) => api.post(`/appointments/${id}/feedback`, { feedback }),
   getDashboard: () => api.get('/appointments/dashboard'),
+  getDashboardStats: () => api.get('/appointments/dashboard/stats'),
   getReports: (params?: any) => api.get('/appointments/reports', { params }),
   export: (params?: any) => api.get('/appointments/export', { params, responseType: 'blob' }),
 };

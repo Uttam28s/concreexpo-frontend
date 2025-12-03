@@ -58,18 +58,32 @@ export default function ReportsPage() {
         endDate: appointmentFilters.endDate || undefined,
       });
 
-      // Create download link
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+      // response.data is already a Blob when responseType is 'blob'
+      const blob = response.data instanceof Blob ? response.data : new Blob([response.data]);
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', `appointments_${new Date().toISOString().split('T')[0]}.xlsx`);
       document.body.appendChild(link);
       link.click();
       link.remove();
+      window.URL.revokeObjectURL(url);
 
       toast.success('Appointments report exported successfully');
     } catch (error: any) {
-      toast.error(error.response?.data?.error || 'Failed to export report');
+      console.error('Export error:', error);
+      // If error response is JSON, try to parse it
+      if (error.response?.data instanceof Blob) {
+        const text = await error.response.data.text();
+        try {
+          const errorData = JSON.parse(text);
+          toast.error(errorData.error || 'Failed to export report');
+        } catch {
+          toast.error('Failed to export report');
+        }
+      } else {
+        toast.error(error.response?.data?.error || 'Failed to export report');
+      }
     } finally {
       setLoading(false);
     }
@@ -83,17 +97,30 @@ export default function ReportsPage() {
         endDate: inventoryFilters.endDate || undefined,
       });
 
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const blob = response.data instanceof Blob ? response.data : new Blob([response.data]);
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', `inventory_${new Date().toISOString().split('T')[0]}.xlsx`);
       document.body.appendChild(link);
       link.click();
       link.remove();
+      window.URL.revokeObjectURL(url);
 
       toast.success('Inventory report exported successfully');
     } catch (error: any) {
-      toast.error(error.response?.data?.error || 'Failed to export report');
+      console.error('Export error:', error);
+      if (error.response?.data instanceof Blob) {
+        const text = await error.response.data.text();
+        try {
+          const errorData = JSON.parse(text);
+          toast.error(errorData.error || 'Failed to export report');
+        } catch {
+          toast.error('Failed to export report');
+        }
+      } else {
+        toast.error(error.response?.data?.error || 'Failed to export report');
+      }
     } finally {
       setLoading(false);
     }
@@ -107,17 +134,30 @@ export default function ReportsPage() {
         endDate: workerFilters.endDate || undefined,
       });
 
-      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const blob = response.data instanceof Blob ? response.data : new Blob([response.data]);
+      const url = window.URL.createObjectURL(blob);
       const link = document.createElement('a');
       link.href = url;
       link.setAttribute('download', `worker_visits_${new Date().toISOString().split('T')[0]}.xlsx`);
       document.body.appendChild(link);
       link.click();
       link.remove();
+      window.URL.revokeObjectURL(url);
 
       toast.success('Worker visits report exported successfully');
     } catch (error: any) {
-      toast.error(error.response?.data?.error || 'Failed to export report');
+      console.error('Export error:', error);
+      if (error.response?.data instanceof Blob) {
+        const text = await error.response.data.text();
+        try {
+          const errorData = JSON.parse(text);
+          toast.error(errorData.error || 'Failed to export report');
+        } catch {
+          toast.error('Failed to export report');
+        }
+      } else {
+        toast.error(error.response?.data?.error || 'Failed to export report');
+      }
     } finally {
       setLoading(false);
     }
